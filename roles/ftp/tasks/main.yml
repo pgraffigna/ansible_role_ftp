@@ -1,0 +1,49 @@
+---
+- name: Instalación de dependencias
+  apt:
+    name: vsftpd
+    update_cache: yes
+    
+- name: Modificar archivo de configuracion
+  shell: |
+    sed -i 's/^#write_enable=YES/write_enable=YES/' "{{ archivo_conf }}"
+    sed -i 's/^#chroot_local_user=YES/chroot_local_user=YES/' "{{ archivo_conf }}"  
+
+- name: Agregar opciones a archivo de configuracion
+  blockinfile:
+    path: "{{ archivo_conf }}"
+    block: |
+      user_sub_token=$USER
+      local_root=/home/$USER/ftp
+      pasv_min_port=30000
+      pasv_max_port=31000
+      userlist_enable=YES
+      userlist_file=/etc/vsftpd.user_list
+      userlist_deny=NO
+    marker: '# {mark} ANSIBLE MANAGED BLOCK - configuracion FTP'
+    insertafter: EOF  
+
+- name: Creando archivo con usuarios permitidos
+  copy:
+    dest: "{{ archivo_usuarios }}"
+    content: "{{ usuario }}"
+
+- name: Creacion de directorio
+  file:
+    path: "{{ home }}/ftp"
+    state: directory
+    mode: '0550'
+    owner: "{{ usuario }}"
+    group: "{{ grupo }}"
+
+- name: Creacion de directorio para subidas
+  file:
+    path: "{{ home }}/ftp/upload"
+    state: directory
+    mode: '0750'
+    owner: "{{ usuario }}"
+    group: "{{ grupo }}"    
+  notify: reiniciar  
+    
+            
+    
