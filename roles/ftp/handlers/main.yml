@@ -1,5 +1,5 @@
 ---
-- name: reiniciar 
+- name: reiniciar
   systemd:
     state: restarted
     name: vsftpd

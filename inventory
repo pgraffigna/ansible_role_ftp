@@ -1,6 +1,6 @@
 [cliente]
-192.168.0.4
+10.62.117.243
 
 [cliente:vars]
-ansible_ssh_user=vagrant
-ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+ansible_user=pgraffigna
+ansible_ssh_private_key_file=~/.ssh/id_cultura

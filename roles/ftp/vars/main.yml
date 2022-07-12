@@ -1,6 +1,6 @@
 ---
 archivo_conf: /etc/vsftpd.conf
 archivo_usuarios: /etc/vsftpd.user_list
-usuario: vagrant
-grupo: vagrant
-home: /home/vagrant
+usuario: pgraffigna
+grupo: pgraffigna
+home: /home/pgraffigna

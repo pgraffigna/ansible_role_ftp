@@ -1,7 +1,6 @@
 ---
 - hosts: cliente
-  become: yes
+  become: true
 
   roles:
-    - ftp	
-    
+    - ftp
