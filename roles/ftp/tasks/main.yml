@@ -1,8 +1,11 @@
 ---
+- include_vars: ../../vars_main.yml
+
 - name: Instalación de dependencias
   apt:
     name: vsftpd
     update_cache: true
+    cache_valid_time: 3600
 
 - name: Modificar archivo de configuracion
   lineinfile:

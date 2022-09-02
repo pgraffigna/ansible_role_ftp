@@ -1,9 +1,9 @@
-# ansible_role_minikube
+# ansible_role_ftp
 
-Playbook rol para crear un servidor FTP en modo pasivo + limitar el acceso de los usuarios.
+Playbook rol para crear un servidor FTP + limitar el acceso de los usuarios.
 
-Testeado con Vagrant + Virtualbox + Ubuntu 20.04
+Testeado con Vagrant + qemu + Ubuntu 20.04
 
 ---
 roles:
-- ftp	
+  - ftp
